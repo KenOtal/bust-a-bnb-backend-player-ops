@@ -1,0 +1,31 @@
+name: Tag Version PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - develop
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: Tag version
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+        git tag -a pr-$PR_NUMBER-$GITHUB_RUN_NUMBER -m "pr-$PR_NUMBER-$GITHUB_RUN_NUMBER"
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PAT }}
+    - name: Push tag to repo
+      run: git push --tags

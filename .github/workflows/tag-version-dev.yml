@@ -1,0 +1,29 @@
+name: Tag Version Dev
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: Increment version
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        npm version patch
+    - name: Push to repo
+      run: git push
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PAT }}
+    - name: Push tag to repo
+      run: git push --tags

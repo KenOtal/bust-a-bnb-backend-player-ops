@@ -1,0 +1,23 @@
+name: Create Docker Image
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Push to GitHub Packages
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: phx-nz/bust-a-bnb-backend-player-ops/player-ops
+        tag_with_ref: true

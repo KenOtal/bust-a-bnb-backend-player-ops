@@ -1,0 +1,1 @@
+{"version":3,"file":"allowList.schema.js","sourceRoot":"","sources":["../../../src/admin/schema/allowList.schema.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,+CAA+D;AAU/D,IAAa,SAAS,GAAtB,MAAa,SAAS;CAGrB,CAAA;AADC;IADC,eAAI,CAAC,EAAE,QAAQ,EAAE,IAAI,EAAE,CAAC;;0CACT;AAFL,SAAS;IADrB,iBAAM,EAAE;GACI,SAAS,CAGrB;AAHY,8BAAS;AAKT,QAAA,eAAe,GAAG,wBAAa,CAAC,cAAc,CAAC,SAAS,CAAC,CAAC"}
